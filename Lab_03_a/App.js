@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 export default function App() {
   const [qua,setqua] = useState('1');
-
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -20,17 +19,21 @@ export default function App() {
             <Text style={{color:'#EE0D0D',fontSize:18,fontWeight:'bold'}}>141.800 đ</Text>
             <Text style={{textDecorationLine:'line-through',color:"#808080"}}>141.800 đ</Text>
             <View style={styles.qua}>
-              <TouchableOpacity>
+              <TouchableOpacity 
+                onPress={() => {
+                  if(qua*1>0)
+                    setqua(qua*1-1);
+                } } >
                 <Text style={{marginTop:4}}>-</Text>
               </TouchableOpacity>
-              <TextInput 
-                value='1' 
-                style={styles.inputqua}
-                onChangeText={(e) =>{
-                  setqua(e.target.value);
-                }}></TextInput>
-              <TouchableOpacity>
+              <TextInput  
+                  style={styles.inputqua}
+                  onChange={(e) => setqua(e.value)}>{qua}
+                </TextInput>
+              <TouchableOpacity
+                onPress={() => setqua(qua*1+1)}>
                 <Text style={{marginTop:4}}>+</Text>
+                
               </TouchableOpacity>
               <TouchableOpacity style={styles.btnbuylater}>
               <Text style={{color:'#134FEC'}}>Mua sau</Text>
